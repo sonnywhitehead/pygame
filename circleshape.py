@@ -15,6 +15,19 @@ class CircleShape(pygame.sprite.Sprite):
         # must override
         pass
 
+    def collides_with(self, other):
+        """
+        Check if this circle collides with another CircleShape.
+        Returns True if the circles overlap, False otherwise.
+        """
+        if not isinstance(other, CircleShape):
+            return False
+        
+        # Calculate distance between centers
+        distance = self.position.distance_to(other.position)
+        # If distance is less than sum of radii, circles overlap
+        return distance < (self.radius + other.radius)
+
     def update(self, dt):
         # must override
         pass
